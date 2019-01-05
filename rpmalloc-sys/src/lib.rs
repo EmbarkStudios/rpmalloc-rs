@@ -1,5 +1,6 @@
 #![allow(non_snake_case, non_camel_case_types)]
 
+#[cfg(test)]
 mod tests;
 
 pub use libc::{c_int, c_uint, c_void, size_t};
