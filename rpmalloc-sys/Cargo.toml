@@ -1,0 +1,15 @@
+[package]
+name = "rpmalloc-sys"
+version = "0.1.0"
+authors = ["Johan Andersson <johan@embark-studios.com>"]
+edition = "2018"
+build = "build.rs"
+publish = false
+workspace = ".."
+
+[dependencies]
+libc = "0.2"
+
+[build-dependencies]
+pkg-config = "0.3.14"
+cc = "1"

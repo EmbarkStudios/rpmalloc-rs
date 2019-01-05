@@ -1,0 +1,18 @@
+[package]
+name = "rpmalloc"
+version = "0.1.0"
+authors = ["Johan Andersson <johan@embark-studios.com>"]
+edition = "2018"
+publish = false
+
+[workspace]
+members = [
+  "rpmalloc-sys",
+]
+
+[lib]
+doctest = false
+test = false
+
+[dependencies]
+rpmalloc-sys = { path = "rpmalloc-sys" }

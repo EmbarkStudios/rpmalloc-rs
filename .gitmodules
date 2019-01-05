@@ -1,0 +1,3 @@
+[submodule "rpmalloc-sys/rpmalloc-greedy"]
+	path = rpmalloc-sys/rpmalloc-greedy
+	url = https://github.com/dcou/rpmalloc-greedy.git
