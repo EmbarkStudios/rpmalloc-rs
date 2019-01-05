@@ -3,7 +3,6 @@ pub mod ffi {
 }
 
 use std::alloc::{GlobalAlloc, Layout};
-//use std::ptr::null_mut;
 use std::sync::atomic::{AtomicBool, Ordering};
 
 pub struct RpMalloc;
