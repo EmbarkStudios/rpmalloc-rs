@@ -24,3 +24,21 @@ unsafe impl GlobalAlloc for RpMalloc {
         ffi::rpfree(ptr as *mut ffi::c_void)
     }
 }
+
+impl RpMalloc {
+    pub fn get_global_stats() -> ffi::rpmalloc_global_statistics_t {
+        let mut stats = ffi::rpmalloc_global_statistics_t {
+            ..Default::default()
+        };
+        unsafe { ffi::rpmalloc_global_statistics(&mut stats) };
+        stats
+    }
+
+    pub fn get_thread_stats() -> ffi::rpmalloc_thread_statistics_t {
+        let mut stats = ffi::rpmalloc_thread_statistics_t {
+            ..Default::default()
+        };
+        unsafe { ffi::rpmalloc_thread_statistics(&mut stats) };
+        stats
+    }
+}

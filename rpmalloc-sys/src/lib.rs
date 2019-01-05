@@ -6,33 +6,33 @@ pub use libc::{c_int, c_uint, c_void, size_t};
 pub type c_bool = c_int;
 
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default, Debug)]
 pub struct rpmalloc_global_statistics_t {
     /// Current amount of virtual memory mapped (only if ENABLE_STATISTICS=1)
-    mapped: size_t,
+    pub mapped: size_t,
     /// Current amount of memory in global caches for small and medium sizes (<64KiB)
-    cached: size_t,
+    pub cached: size_t,
     /// Total amount of memory mapped (only if ENABLE_STATISTICS=1)
-    mapped_total: size_t,
+    pub mapped_total: size_t,
     /// Total amount of memory unmapped (only if ENABLE_STATISTICS=1)
-    unmapped_total: size_t,
+    pub unmapped_total: size_t,
 }
 
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default, Debug)]
 pub struct rpmalloc_thread_statistics_t {
     /// Current number of bytes available for allocation from active spans
-    active: size_t,
+    pub active: size_t,
     /// Current number of bytes available in thread size class caches
-    sizecache: size_t,
+    pub sizecache: size_t,
     /// Current number of bytes available in thread span caches
-    spancache: size_t,
+    pub spancache: size_t,
     /// Current number of bytes in pending deferred deallocations
-    deferred: size_t,
+    pub deferred: size_t,
     /// Total number of bytes transitioned from thread cache to global cache
-    thread_to_global: size_t,
+    pub thread_to_global: size_t,
     /// Total number of bytes transitioned from global cache to thread cache
-    global_to_thread: size_t,
+    pub global_to_thread: size_t,
 }
 
 /*
