@@ -14,6 +14,7 @@ fn main() {
         build
             .file(path.join("rpmalloc.c"))
             .opt_level(2)
+            .define("ENABLE_PRELOAD", "1")
             .compile("librpmalloc.a")
     }
 }
