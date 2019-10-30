@@ -1,12 +1,12 @@
-extern crate pkg_config;
 extern crate cc;
+extern crate pkg_config;
 
 use std::env;
 use std::path::PathBuf;
 
 fn main() {
     let mut path: PathBuf = PathBuf::from(&env::var("CARGO_MANIFEST_DIR").unwrap());
-    path.push("rpmalloc-greedy");
+    path.push("rpmalloc");
     path.push("rpmalloc");
 
     if !pkg_config::find_library("librpmalloc").is_ok() {
