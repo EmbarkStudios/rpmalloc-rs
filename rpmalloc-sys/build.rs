@@ -17,7 +17,8 @@ fn main() {
             .define("ENABLE_PRELOAD", "1");
 
         if env::var("CARGO_CFG_TARGET_OS").unwrap().as_str() == "linux" {
-            build = build.define("GNU_SOURCE", "1");
+            build = build.define("_GNU_SOURCE", "1");
+            println!("cargo:rustc-link-lib=pthread");
         }
 
         build.compile("librpmalloc.a")
