@@ -26,6 +26,23 @@ And then in one of your `.rs` files:
 static ALLOC: rpmalloc::RpMalloc = rpmalloc::RpMalloc;
 ```
 
+### Configuration
+
+It is also possible to configure how the allocator should be built through a set of feature flags that correspond to the rpmalloc C library `ENABLE_x` defines:
+
+- Overall: `statistics`, `validate_args`, `asserts`, `guards`
+- Cache: `unlimited_cache`, `unlimited_global_cache`, `unlimited_thread_cache`, `global_cache`, `thread_cache`, `adaptive_thread_cache`
+
+Example usage:
+
+```toml
+[dependencies]
+rpmalloc = { version = "0.1.0", features = ["guards", "statistics"] }
+```
+See [rpmalloc README](https://github.com/mjansson/rpmalloc/blob/master/README.md) for detailed descriptions of the config options.
+
+Note that all of these have not been tested together with this Rust crate.
+
 ## Contributing
 
 We welcome community contributions to this project.
