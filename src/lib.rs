@@ -17,7 +17,7 @@ unsafe impl GlobalAlloc for RpMalloc {
 }
 
 impl RpMalloc {
-    pub fn get_global_stats() -> ffi::rpmalloc_global_statistics_t {
+    pub fn global_stats() -> ffi::rpmalloc_global_statistics_t {
         let mut stats: MaybeUninit<ffi::rpmalloc_global_statistics_t> = MaybeUninit::uninit();
         unsafe {
             ffi::rpmalloc_global_statistics(stats.as_mut_ptr());
@@ -25,7 +25,7 @@ impl RpMalloc {
         }
     }
 
-    pub fn get_thread_stats() -> ffi::rpmalloc_thread_statistics_t {
+    pub fn thread_stats() -> ffi::rpmalloc_thread_statistics_t {
         let mut stats: MaybeUninit<ffi::rpmalloc_thread_statistics_t> = MaybeUninit::uninit();
         unsafe {
             ffi::rpmalloc_thread_statistics(stats.as_mut_ptr());
