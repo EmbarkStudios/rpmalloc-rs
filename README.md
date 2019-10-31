@@ -8,7 +8,7 @@
 
 WIP implementation of [rpmalloc](https://github.com/rampantpixels/rpmalloc) as a Rust global memory allocator.
 
-See the [rpmalloc README](https://github.com/mjansson/rpmalloc/README.md) for a detailed description of how the allocator works, peforms, and compares with other allocators.
+See the [rpmalloc README](https://github.com/mjansson/rpmalloc/blob/master/README.md) for a detailed description of how the allocator works, peforms, and compares with other allocators.
 
 ## How to use
 
@@ -39,9 +39,20 @@ Example usage:
 [dependencies]
 rpmalloc = { version = "0.1.0", features = ["guards", "statistics"] }
 ```
+
 See [rpmalloc README](https://github.com/mjansson/rpmalloc/blob/master/README.md) for detailed descriptions of the config options.
 
 Note that all of these have not been tested together with this Rust crate.
+
+## Support
+
+This crate has been tested to support the following platforms and Rust targets:
+
+- `x86_64-pc-windows-msvc`
+- `x86_64-apple-darwin`
+- `x86_64-unknown-linux-gnu`
+
+PRs to increase the amount of supported targets are welcome, but they should add CI verification and avoid adding additional dependencies.
 
 ## Contributing
 
