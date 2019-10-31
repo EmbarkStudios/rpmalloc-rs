@@ -14,11 +14,21 @@ fn main() {
         let mut build = build
             .file(path.join("rpmalloc.c"))
             .opt_level(2)
-            .define("ENABLE_PRELOAD", "1");
+            .define("ENABLE_PRELOAD", "1")
+            .define("ENABLE_OVERRIDE", "1");
 
-        if env::var("CARGO_CFG_TARGET_OS").unwrap().as_str() == "linux" {
-            build = build.define("_GNU_SOURCE", "1");
-            println!("cargo:rustc-link-lib=pthread");
+        match env::var("CARGO_CFG_TARGET_OS").unwrap().as_str() {
+            "linux" => {
+                build = build.define("_GNU_SOURCE", "1");
+                println!("cargo:rustc-link-lib=pthread");
+            }
+            "macos" => {
+                build = build
+                    .flag("-Wno-padded")
+                    .flag("-Wno-documentation-unknown-command")
+                    .flag("-Wno-static-in-inline");
+            }
+            _ => (),
         }
 
         build.compile("librpmalloc.a")
