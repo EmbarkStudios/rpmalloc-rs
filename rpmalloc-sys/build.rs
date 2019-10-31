@@ -11,10 +11,15 @@ fn main() {
 
     if !pkg_config::find_library("librpmalloc").is_ok() {
         let mut build = cc::Build::new();
-        build
+        let mut build = build
             .file(path.join("rpmalloc.c"))
             .opt_level(2)
-            .define("ENABLE_PRELOAD", "1")
-            .compile("librpmalloc.a")
+            .define("ENABLE_PRELOAD", "1");
+
+        if env::var("CARGO_CFG_TARGET_OS").unwrap().as_str() == "linux" {
+            build = build.define("GNU_SOURCE", "1");
+        }
+
+        build.compile("librpmalloc.a")
     }
 }
