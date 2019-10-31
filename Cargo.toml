@@ -1,9 +1,13 @@
 [package]
 name = "rpmalloc"
 version = "0.1.0"
-authors = ["Johan Andersson <johan@embark-studios.com>"]
+description = ""
+authors = ["Embark <opensource@embark-studios.com>", "Johan Andersson <repi@repi.se>"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/EmbarkStudios/rpmalloc-rs"
 edition = "2018"
-publish = false
+keywords = ["allocator", "rpmalloc"]
+categories = ["memory-management", "api-bindings"]
 
 [workspace]
 members = [
@@ -15,4 +19,4 @@ doctest = false
 test = false
 
 [dependencies]
-rpmalloc-sys = { path = "rpmalloc-sys" }
+rpmalloc-sys = { version = "0.1.0", path = "rpmalloc-sys" }
