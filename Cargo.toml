@@ -20,3 +20,16 @@ test = false
 
 [dependencies]
 rpmalloc-sys = { version = "0.1.0", path = "rpmalloc-sys" }
+
+[features]
+default = []
+statistics = ["rpmalloc-sys/statistics"]                              # Compile with ENABLE_STATISTICS=1
+validate_args = ["rpmalloc-sys/validate_args"]                        # Compile with ENABLE_VALIDATE_ARGS=1
+asserts = ["rpmalloc-sys/asserts"]                                    # Compile with ENABLE_ASSERTS=1
+guards = ["rpmalloc-sys/guards"]                                      # Compile with ENABLE_GUARDS=1
+unlimited_cache = ["rpmalloc-sys/unlimited_cache"]                    # Compile with ENABLE_UNLIMITED_CACHE=1
+unlimited_global_cache = ["rpmalloc-sys/unlimited_global_cache"]      # Compile with ENABLE_UNLIMITED_GLOBAL_CACHE=1
+unlimited_thread_cache = ["rpmalloc-sys/unlimited_thread_cache"]      # Compile with ENABLE_UNLIMITED_THREAD_CACHE=1
+global_cache = ["rpmalloc-sys/global_cache"]                          # Compile with ENABLE_GLOBAL_CACHE=1
+thread_cache = ["rpmalloc-sys/thread_cache"]                          # Compile with ENABLE_THREAD_CACHE=1
+adaptive_thread_cache = ["rpmalloc-sys/adaptive_thread_cache"]        # Compile with ENABLE_ADAPTIVE_THREAD_CACHE=1
