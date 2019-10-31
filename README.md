@@ -26,6 +26,16 @@ And then in one of your `.rs` files:
 static ALLOC: rpmalloc::RpMalloc = rpmalloc::RpMalloc;
 ```
 
+## Support
+
+This crate has been tested to support the following platforms and Rust targets:
+
+- `x86_64-pc-windows-msvc`
+- `x86_64-apple-darwin`
+- `x86_64-unknown-linux-gnu`
+
+PRs to increase the amount of supported targets are welcome, but they should add CI verification and avoid adding additional dependencies.
+
 ## Contributing
 
 We welcome community contributions to this project.
