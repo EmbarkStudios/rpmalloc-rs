@@ -57,8 +57,16 @@ jobs:
         with:
           command: build
           args: --tests
+
+      # test default features
       - name: cargo test
         uses: actions-rs/cargo@v1
         with:
           command: test
-          args: --release
+
+      # test all features
+      - name: cargo test
+        uses: actions-rs/cargo@v1
+        with:
+          command: test
+          args: --all-features

@@ -17,3 +17,16 @@ libc = "0.2"
 [build-dependencies]
 pkg-config = "0.3.14"
 cc = "1"
+
+[features]
+default = []
+statistics = []                 # Compile with ENABLE_STATISTICS=1
+validate_args = []              # Compile with ENABLE_VALIDATE_ARGS=1
+asserts = []                    # Compile with ENABLE_ASSERTS=1
+guards = []                     # Compile with ENABLE_GUARDS=1
+unlimited_cache = []            # Compile with ENABLE_UNLIMITED_CACHE=1
+unlimited_global_cache = []     # Compile with ENABLE_UNLIMITED_GLOBAL_CACHE=1
+unlimited_thread_cache = []     # Compile with ENABLE_UNLIMITED_THREAD_CACHE=1
+global_cache = []               # Compile with ENABLE_GLOBAL_CACHE=1
+thread_cache = []               # Compile with ENABLE_THREAD_CACHE=1
+adaptive_thread_cache = []      # Compile with ENABLE_ADAPTIVE_THREAD_CACHE=1
