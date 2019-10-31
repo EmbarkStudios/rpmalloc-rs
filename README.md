@@ -8,6 +8,22 @@
 
 WIP implementation of [rpmalloc](https://github.com/rampantpixels/rpmalloc) as a Rust global memory allocator.
 
+## How to use
+
+To use rpmalloc as the global allocator in your Rust binary crate, in `Cargo.toml` add:
+
+```toml
+[dependencies]
+rpmalloc = "0.1.0"
+```
+
+And then in one of your `.rs` files:
+
+```rust
+#[global_allocator]
+static ALLOC: rpmalloc::RpMalloc = rpmalloc::RpMalloc;
+```
+
 ## Contributing
 
 We welcome community contributions to this project.
