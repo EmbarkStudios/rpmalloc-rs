@@ -8,7 +8,7 @@
 
 WIP implementation of [rpmalloc](https://github.com/rampantpixels/rpmalloc) as a Rust global memory allocator.
 
-See the [rpmalloc README](https://github.com/mjansson/rpmalloc/README.md) for a detailed description of how the allocator works, peforms, and compares with other allocators.
+See the [rpmalloc README](https://github.com/mjansson/rpmalloc/blob/master/README.md) for a detailed description of how the allocator works, peforms, and compares with other allocators.
 
 ## How to use
 
