@@ -4,7 +4,7 @@
 [![Crates.io](https://img.shields.io/crates/v/rpmalloc.svg)](https://crates.io/crates/rpmalloc)
 [![Docs](https://docs.rs/rpmalloc/badge.svg)](https://docs.rs/rpmalloc)
 [![Contributor Covenant](https://img.shields.io/badge/contributor%20covenant-v1.4%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
-[![Embark](https://img.shields.io/badge/embark-open%20source-blueviolet.svg)](https://github.com/EmbarkStudios)
+[![Embark](https://img.shields.io/badge/embark-open%20source-blueviolet.svg)](http://embark.dev)
 
 WIP implementation of [rpmalloc](https://github.com/rampantpixels/rpmalloc) as a Rust global memory allocator.
 
