@@ -9,31 +9,81 @@ pub type c_bool = c_int;
 #[repr(C)]
 #[derive(Clone, Copy, Default, Debug)]
 pub struct rpmalloc_global_statistics_t {
-    /// Current amount of virtual memory mapped (only if ENABLE_STATISTICS=1)
+    /// Current amount of virtual memory mapped, all of which might not have been committed (only if ENABLE_STATISTICS=1)
     pub mapped: size_t,
-    /// Current amount of memory in global caches for small and medium sizes (<64KiB)
+    /// Peak amount of virtual memory mapped, all of which might not have been committed (only if ENABLE_STATISTICS=1)
+    pub mapped_peak: size_t,
+    /// Current amount of memory in global caches for small and medium sizes (<32KiB)
     pub cached: size_t,
-    /// Total amount of memory mapped (only if ENABLE_STATISTICS=1)
+    /// Current amount of memory allocated in huge allocations, i.e larger than LARGE_SIZE_LIMIT which is 2MiB by default (only if ENABLE_STATISTICS=1)
+    pub huge_alloc: size_t,
+    /// Peak amount of memory allocated in huge allocations, i.e larger than LARGE_SIZE_LIMIT which is 2MiB by default (only if ENABLE_STATISTICS=1)
+    pub huge_alloc_peak: size_t,
+    /// Total amount of memory mapped since initialization (only if ENABLE_STATISTICS=1)
     pub mapped_total: size_t,
-    /// Total amount of memory unmapped (only if ENABLE_STATISTICS=1)
+    /// Total amount of memory unmapped since initialization  (only if ENABLE_STATISTICS=1)
     pub unmapped_total: size_t,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Default, Debug)]
+pub struct rpmalloc_thread_span_statistics_t {
+    /// Currently used number of spans
+    pub current: size_t,
+    /// High water mark of spans used
+    pub peak: size_t,
+    /// Number of spans transitioned to global cache
+    pub to_global: size_t,
+    /// Number of spans transitioned from global cache
+    pub from_global: size_t,
+    /// Number of spans transitioned to thread cache
+    pub to_cache: size_t,
+    /// Number of spans transitioned from thread cache
+    pub from_cache: size_t,
+    /// Number of spans transitioned to reserved state
+    pub to_reserved: size_t,
+    /// Number of spans transitioned from reserved state
+    pub from_reserved: size_t,
+    /// Number of raw memory map calls (not hitting the reserve spans but resulting in actual OS mmap calls)
+    pub map_calls: size_t,
+}
+
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct rpmalloc_thread_size_statistics_t {
+    /// Current number of allocations
+    pub alloc_current: size_t,
+    /// Peak number of allocations
+    pub alloc_peak: size_t,
+    /// Total number of allocations
+    pub alloc_total: size_t,
+    /// Total number of frees
+    pub free_total: size_t,
+    /// Number of spans transitioned to cache
+    pub spans_to_cache: size_t,
+    /// Number of spans transitioned from cache
+    pub spans_from_cache: size_t,
+    /// Number of spans transitioned from reserved state
+    pub spans_from_reserved: size_t,
+    /// Number of raw memory map calls (not hitting the reserve spans but resulting in actual OS mmap calls)
+    pub map_calls: size_t,
+}
+
+#[repr(C)]
+#[derive(Clone, Copy)]
 pub struct rpmalloc_thread_statistics_t {
-    /// Current number of bytes available for allocation from active spans
-    pub active: size_t,
-    /// Current number of bytes available in thread size class caches
+    /// Current number of bytes available in thread size class caches for small and medium sizes (<32KiB)
     pub sizecache: size_t,
-    /// Current number of bytes available in thread span caches
+    /// Current number of bytes available in thread span caches for small and medium sizes (<32KiB)
     pub spancache: size_t,
-    /// Current number of bytes in pending deferred deallocations
-    pub deferred: size_t,
-    /// Total number of bytes transitioned from thread cache to global cache
+    /// Total number of bytes transitioned from thread cache to global cache (only if ENABLE_STATISTICS=1)
     pub thread_to_global: size_t,
-    /// Total number of bytes transitioned from global cache to thread cache
+    /// Total number of bytes transitioned from global cache to thread cache (only if ENABLE_STATISTICS=1)
     pub global_to_thread: size_t,
+    /// Per span count statistics (only if ENABLE_STATISTICS=1)
+    pub span_use: [rpmalloc_thread_span_statistics_t; 32],
+    /// Per size class statistics (only if ENABLE_STATISTICS=1)
+    pub size_use: [rpmalloc_thread_size_statistics_t; 128],
 }
 
 /*
@@ -48,7 +98,7 @@ typedef struct rpmalloc_config_t {
     //  alignment to shift it into 16 bits. If you set a memory_map function, you
     //  must also set a memory_unmap function or else the default implementation will
     //  be used for both.
-    void* (*memory_map)(size_t size, size_t* offset);
+    void* (*memory_map)(pub size, size_t* offset);
     //! Unmap the memory pages starting at address and spanning the given number of bytes.
     //  If release is set to non-zero, the unmap is for an entire span range as returned by
     //  a previous call to memory_map and that the entire range should be released. The
@@ -56,19 +106,19 @@ typedef struct rpmalloc_config_t {
     //  the unmap is a partial decommit of a subset of the mapped memory range.
     //  If you set a memory_unmap function, you must also set a memory_map function or
     //  else the default implementation will be used for both.
-    void (*memory_unmap)(void* address, size_t size, size_t offset, size_t release);
+    void (*memory_unmap)(void* address, pub size, pub offset, pub release);
     //! Size of memory pages. The page size MUST be a power of two. All memory mapping
     //  requests to memory_map will be made with size set to a multiple of the page size.
-    size_t page_size;
+    pub page_size;
     //! Size of a span of memory blocks. MUST be a power of two, and in [4096,262144]
     //  range (unless 0 - set to 0 to use the default span size).
-    size_t span_size;
+    pub span_size;
     //! Number of spans to map at each request to map new virtual memory blocks. This can
     //  be used to minimize the system call overhead at the cost of virtual memory address
     //  space. The extra mapped pages will not be written until actually used, so physical
     //  committed memory should not be affected in the default implementation. Will be
     //  aligned to a multiple of spans that match memory page size in case of huge pages.
-    size_t span_map_count;
+    pub span_map_count;
     //! Enable use of large/huge pages
     int enable_huge_pages;
     //! Debug callback if memory guards are enabled. Called if a memory overwrite is detected
@@ -100,6 +150,6 @@ extern "C" {
     ) -> *mut c_void;
     pub fn rpaligned_alloc(alignment: size_t, size: size_t) -> *mut c_void;
     pub fn rpmemalign(alignment: size_t, size: size_t) -> *mut c_void;
-    //extern int rpposix_memalign(void **memptr, size_t alignment, size_t size);
+    //extern int rpposix_memalign(void **memptr, pub alignment, pub size);
     pub fn rpmalloc_usable_size(ptr: *mut c_void) -> size_t;
 }
