@@ -54,7 +54,8 @@ jobs:
       - name: cargo test
         uses: actions-rs/cargo@v1
         with:
-          command: test --all
+          command: test
+          args: --all
       # test all features
       # disabled for now because our tests leak which asserts catch on linux: https://github.com/EmbarkStudios/rpmalloc-rs/runs/284078500
       #- name: cargo test (all features)
