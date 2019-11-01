@@ -6,7 +6,7 @@
 [![Contributor Covenant](https://img.shields.io/badge/contributor%20covenant-v1.4%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
 [![Embark](https://img.shields.io/badge/embark-open%20source-blueviolet.svg)](http://embark.dev)
 
-WIP implementation of [rpmalloc](https://github.com/rampantpixels/rpmalloc) as a Rust global memory allocator.
+Cross-platform Rust global memory allocator using [rpmalloc](https://github.com/rampantpixels/rpmalloc).
 
 See the [rpmalloc README](https://github.com/mjansson/rpmalloc/blob/master/README.md) for a detailed description of how the allocator works, peforms, and compares with other allocators.
 
