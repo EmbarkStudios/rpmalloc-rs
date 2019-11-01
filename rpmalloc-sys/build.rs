@@ -45,7 +45,10 @@ fn main() {
 
     match env::var("CARGO_CFG_TARGET_OS").unwrap().as_str() {
         "linux" => {
-            build = build.define("_GNU_SOURCE", "1");
+            build = build
+                .define("_GNU_SOURCE", "1")
+                .define("ENABLE_OVERRIDE", "1");
+
             println!("cargo:rustc-link-lib=pthread");
         }
         "macos" => {
