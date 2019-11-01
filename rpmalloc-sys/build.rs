@@ -17,8 +17,7 @@ fn main() {
     let mut build = build
         .file(path.join("rpmalloc.c"))
         .opt_level(2)
-        .define("ENABLE_PRELOAD", "1")
-        .define("ENABLE_OVERRIDE", "1");
+        .define("ENABLE_PRELOAD", "1");
 
     // add defines for enabled features
 
@@ -51,6 +50,7 @@ fn main() {
         }
         "macos" => {
             build = build
+                .define("ENABLE_OVERRIDE", "1") // we get rpmalloc compile error if not using this
                 .flag("-Wno-padded")
                 .flag("-Wno-documentation-unknown-command")
                 .flag("-Wno-static-in-inline");
