@@ -1,4 +1,4 @@
-//! # 🛄 rpmalloc
+//! # 🐏 rpmalloc
 //!
 //! [![Build Status](https://github.com/EmbarkStudios/rpmalloc-rs/workflows/CI/badge.svg)](https://github.com/EmbarkStudios/rpmalloc-rs/actions?workflow=CI)
 //! [![Crates.io](https://img.shields.io/crates/v/rpmalloc.svg)](https://crates.io/crates/rpmalloc)
