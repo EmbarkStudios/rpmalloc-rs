@@ -1,6 +1,7 @@
 #![warn(clippy::all)]
 #![warn(rust_2018_idioms)]
 #![allow(non_snake_case, non_camel_case_types)]
+#![deny(missing_docs)]
 
 //! # 🐏 rpmalloc-sys
 //!
@@ -37,8 +38,8 @@
 mod tests;
 
 pub use libc::{c_int, c_uint, c_void, size_t};
-pub type c_bool = c_int;
 
+/// Global memory statistics
 #[repr(C)]
 #[derive(Clone, Copy, Default, Debug)]
 pub struct rpmalloc_global_statistics_t {
@@ -58,6 +59,7 @@ pub struct rpmalloc_global_statistics_t {
     pub unmapped_total: size_t,
 }
 
+/// Mmemory span statistics for a thread
 #[repr(C)]
 #[derive(Clone, Copy, Default, Debug)]
 pub struct rpmalloc_thread_span_statistics_t {
@@ -81,6 +83,7 @@ pub struct rpmalloc_thread_span_statistics_t {
     pub map_calls: size_t,
 }
 
+/// Memory size statistics for a thread
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct rpmalloc_thread_size_statistics_t {
@@ -102,6 +105,7 @@ pub struct rpmalloc_thread_size_statistics_t {
     pub map_calls: size_t,
 }
 
+/// Memory statistics for a thread
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct rpmalloc_thread_statistics_t {
@@ -179,7 +183,7 @@ extern "C" {
     pub fn rpmalloc_thread_collect();
 
     /// Query if allocator is initialized for calling thread
-    pub fn rpmalloc_is_thread_initialized() -> c_bool;
+    pub fn rpmalloc_is_thread_initialized() -> c_int;
 
     /// Get per-thread statistics
     pub fn rpmalloc_thread_statistics(stats: *mut rpmalloc_thread_statistics_t);
