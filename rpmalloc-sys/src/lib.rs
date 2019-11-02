@@ -160,20 +160,53 @@ typedef struct rpmalloc_config_t {
 */
 
 extern "C" {
+    /// Initialize allocator with default configuration
     pub fn rpmalloc_initialize() -> c_int;
+
     //extern int rpmalloc_initialize_config(const rpmalloc_config_t* config);
     //extern const rpmalloc_config_t* rpmalloc_config(void);
+
+    /// Finalize allocator
     pub fn rpmalloc_finalize();
+
+    /// Initialize allocator for calling thread
     pub fn rpmalloc_thread_initialize();
+
+    /// Finalize allocator for calling thread
     pub fn rpmalloc_thread_finalize();
+
+    /// Perform deferred deallocations pending for the calling thread hea
     pub fn rpmalloc_thread_collect();
+
+    /// Query if allocator is initialized for calling thread
     pub fn rpmalloc_is_thread_initialized() -> c_bool;
+
+    /// Get per-thread statistics
     pub fn rpmalloc_thread_statistics(stats: *mut rpmalloc_thread_statistics_t);
+
+    /// Get global statistics
     pub fn rpmalloc_global_statistics(stats: *mut rpmalloc_global_statistics_t);
+
+    /// Dump all statistics in human readable format to file (should be a FILE*)
+    pub fn rpmalloc_dump_statistics(file: *mut c_void);
+
+    /// Allocate a memory block of at least the given size
     pub fn rpmalloc(size: size_t) -> *mut c_void;
+
+    /// Free the given memory block
     pub fn rpfree(ptr: *mut c_void);
+
+    /// Allocate a memory block of at least the given size and zero initialize it
     pub fn rpcalloc(num: size_t, size: size_t) -> *mut c_void;
+
+    /// Reallocate the given block to at least the given size
     pub fn rprealloc(ptr: *mut c_void, size: size_t) -> *mut c_void;
+
+    /// Reallocate the given block to at least the given size and alignment,
+    /// with optional control flags (see RPMALLOC_NO_PRESERVE).
+    /// Alignment must be a power of two and a multiple of sizeof(void*),
+    /// and should ideally be less than memory page size. A caveat of rpmalloc
+    /// internals is that this must also be strictly less than the span size (default 64KiB)
     pub fn rpaligned_realloc(
         ptr: *mut c_void,
         alignment: size_t,
@@ -181,8 +214,25 @@ extern "C" {
         oldsize: size_t,
         flags: c_uint,
     ) -> *mut c_void;
+
+    /// Allocate a memory block of at least the given size and alignment.
+    /// Alignment must be a power of two and a multiple of sizeof(void*),
+    /// and should ideally be less than memory page size. A caveat of rpmalloc
+    /// internals is that this must also be strictly less than the span size (default 64KiB)    
     pub fn rpaligned_alloc(alignment: size_t, size: size_t) -> *mut c_void;
+
+    /// Allocate a memory block of at least the given size and alignment.
+    /// Alignment must be a power of two and a multiple of sizeof(void*),
+    /// and should ideally be less than memory page size. A caveat of rpmalloc
+    /// internals is that this must also be strictly less than the span size (default 64KiB)
     pub fn rpmemalign(alignment: size_t, size: size_t) -> *mut c_void;
-    //extern int rpposix_memalign(void **memptr, pub alignment, pub size);
+
+    /// Allocate a memory block of at least the given size and alignment.
+    /// Alignment must be a power of two and a multiple of sizeof(void*),
+    /// and should ideally be less than memory page size. A caveat of rpmalloc
+    /// internals is that this must also be strictly less than the span size (default 64KiB)
+    pub fn rpposix_memalign(memptr: *mut *mut c_void, alignment: size_t, size: size_t) -> c_int;
+
+    /// Query the usable size of the given memory block (from given pointer to the end of block)
     pub fn rpmalloc_usable_size(ptr: *mut c_void) -> size_t;
 }
