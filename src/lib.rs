@@ -1,3 +1,7 @@
+#![warn(clippy::all)]
+#![warn(rust_2018_idioms)]
+#![deny(missing_docs)]
+
 //! # 🐏 rpmalloc
 //!
 //! [![Build Status](https://github.com/EmbarkStudios/rpmalloc-rs/workflows/CI/badge.svg)](https://github.com/EmbarkStudios/rpmalloc-rs/actions?workflow=CI)
