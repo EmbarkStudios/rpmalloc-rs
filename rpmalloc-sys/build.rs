@@ -14,15 +14,12 @@ fn main() {
     }
 
     let mut build = cc::Build::new();
-    let mut build = build
-        .file(path.join("rpmalloc.c"))
-        .opt_level(2)
-        .define("ENABLE_PRELOAD", "1");
-
+    let mut build = build.file(path.join("rpmalloc.c")).opt_level(2);
     // add defines for enabled features
 
     #[rustfmt::skip]
     let features = [
+        ( "ENABLE_PRELOAD", cfg!(feature = "preload") ),
         ( "ENABLE_STATISTICS", cfg!(feature = "statistics") ),
         ( "ENABLE_VALIDATE_ARGS", cfg!(feature = "validate_args") ),
         ( "ENABLE_ASSERTS", cfg!(feature = "asserts") ),

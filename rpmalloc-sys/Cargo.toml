@@ -21,6 +21,7 @@ cc = "1"
 
 [features]
 default = []
+preload = []                    # Compile with ENABLE_PRELOAD=1
 statistics = []                 # Compile with ENABLE_STATISTICS=1
 validate_args = []              # Compile with ENABLE_VALIDATE_ARGS=1
 asserts = []                    # Compile with ENABLE_ASSERTS=1
