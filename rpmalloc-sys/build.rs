@@ -47,7 +47,6 @@ fn main() {
         }
         "macos" => {
             build = build
-                .define("ENABLE_OVERRIDE", "1") // we get rpmalloc compile error if not using this
                 .flag("-Wno-padded")
                 .flag("-Wno-documentation-unknown-command")
                 .flag("-Wno-static-in-inline");
