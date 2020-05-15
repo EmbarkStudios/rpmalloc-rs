@@ -1,3 +1,4 @@
 [submodule "rpmalloc-sys/rpmalloc"]
 	path = rpmalloc-sys/rpmalloc
 	url = https://github.com/mjansson/rpmalloc.git
+	branch = develop
