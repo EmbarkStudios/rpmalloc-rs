@@ -16,7 +16,7 @@ To use rpmalloc as the global allocator in your Rust binary crate, in `Cargo.tom
 
 ```toml
 [dependencies]
-rpmalloc = "0.1.0"
+rpmalloc = "0.2.0"
 ```
 
 And then in one of your `.rs` files:
@@ -37,7 +37,7 @@ Example usage:
 
 ```toml
 [dependencies]
-rpmalloc = { version = "0.1.0", features = ["guards", "statistics"] }
+rpmalloc = { version = "0.2.0", features = ["guards", "statistics"] }
 ```
 
 See [rpmalloc README](https://github.com/mjansson/rpmalloc/blob/master/README.md) for detailed descriptions of the config options.

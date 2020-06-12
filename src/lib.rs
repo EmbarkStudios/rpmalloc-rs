@@ -20,7 +20,7 @@
 //!
 //! ```toml
 //! [dependencies]
-//! rpmalloc = "0.1.0"
+//! rpmalloc = "0.2.0"
 //! ```
 //!
 //! And then in one of your `.rs` files:
