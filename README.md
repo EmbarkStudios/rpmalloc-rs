@@ -2,8 +2,8 @@
 
 [![Embark](https://img.shields.io/badge/embark-open%20source-blueviolet.svg)](https://embark.dev)
 [![Embark](https://img.shields.io/badge/discord-ark-%237289da.svg?logo=discord)](https://discord.gg/dAuKfZS)
-[![Crates.io](https://img.shields.io/crates/v/rpmalloc-rs.svg)](https://crates.io/crates/rpmalloc-rs)
-[![Docs](https://docs.rs/rpmalloc-rs/badge.svg)](https://docs.rs/rpmalloc-rs)
+[![Crates.io](https://img.shields.io/crates/v/rpmalloc.svg)](https://crates.io/crates/rpmalloc)
+[![Docs](https://docs.rs/rpmalloc/badge.svg)](https://docs.rs/rpmalloc)
 [![dependency status](https://deps.rs/repo/github/EmbarkStudios/rpmalloc-rs/status.svg)](https://deps.rs/repo/github/EmbarkStudios/rpmalloc-rs)
 [![Build Status](https://github.com/EmbarkStudios/rpmalloc-rs/workflows/CI/badge.svg)](https://github.com/EmbarkStudios/rpmalloc-rs/actions?workflow=CI)
 
