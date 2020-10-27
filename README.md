@@ -1,10 +1,11 @@
 # 🐏 rpmalloc-rs
 
+[![Embark](https://img.shields.io/badge/embark-open%20source-blueviolet.svg)](https://embark.dev)
+[![Embark](https://img.shields.io/badge/discord-ark-%237289da.svg?logo=discord)](https://discord.gg/dAuKfZS)
+[![Crates.io](https://img.shields.io/crates/v/rpmalloc-rs.svg)](https://crates.io/crates/rpmalloc-rs)
+[![Docs](https://docs.rs/rpmalloc-rs/badge.svg)](https://docs.rs/rpmalloc-rs)
+[![dependency status](https://deps.rs/repo/github/EmbarkStudios/rpmalloc-rs/status.svg)](https://deps.rs/repo/github/EmbarkStudios/rpmalloc-rs)
 [![Build Status](https://github.com/EmbarkStudios/rpmalloc-rs/workflows/CI/badge.svg)](https://github.com/EmbarkStudios/rpmalloc-rs/actions?workflow=CI)
-[![Crates.io](https://img.shields.io/crates/v/rpmalloc.svg)](https://crates.io/crates/rpmalloc)
-[![Docs](https://docs.rs/rpmalloc/badge.svg)](https://docs.rs/rpmalloc)
-[![Contributor Covenant](https://img.shields.io/badge/contributor%20covenant-v1.4%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
-[![Embark](https://img.shields.io/badge/embark-open%20source-blueviolet.svg)](http://embark.dev)
 
 Cross-platform Rust global memory allocator using [rpmalloc](https://github.com/rampantpixels/rpmalloc).
 
@@ -55,6 +56,8 @@ This crate has been tested to support the following platforms and Rust targets:
 PRs to increase the amount of supported targets are welcome, but they should add CI verification and avoid adding additional dependencies.
 
 ## Contributing
+
+[![Contributor Covenant](https://img.shields.io/badge/contributor%20covenant-v1.4-ff69b4.svg)](../CODE_OF_CONDUCT.md)
 
 We welcome community contributions to this project.
 
