@@ -146,6 +146,9 @@ unsafe impl GlobalAlloc for RpMalloc {
     unsafe fn alloc(&self, layout: Layout) -> *mut u8 {
         ffi::rpaligned_alloc(layout.align(), layout.size()) as *mut u8
     }
+    unsafe fn alloc_zeroed(&self, layout: Layout) -> *mut u8 {
+        ffi::rpaligned_calloc(layout.align(), 1, layout.size()) as *mut u8
+    }
     unsafe fn dealloc(&self, ptr: *mut u8, _layout: Layout) {
         ffi::rpfree(ptr as *mut ffi::c_void)
     }

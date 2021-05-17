@@ -277,6 +277,12 @@ extern "C" {
     /// internals is that this must also be strictly less than the span size (default 64KiB)    
     pub fn rpaligned_alloc(alignment: size_t, size: size_t) -> *mut c_void;
 
+    /// Allocate a memory block of at least the given size and alignment, and zero initialize it.
+    /// Alignment must be a power of two and a multiple of sizeof(void*),
+    /// and should ideally be less than memory page size. A caveat of rpmalloc
+    /// internals is that this must also be strictly less than the span size (default 64KiB)    
+    pub fn rpaligned_calloc(alignment: size_t, num: size_t, size: size_t) -> *mut c_void;
+
     /// Allocate a memory block of at least the given size and alignment.
     /// Alignment must be a power of two and a multiple of sizeof(void*),
     /// and should ideally be less than memory page size. A caveat of rpmalloc
