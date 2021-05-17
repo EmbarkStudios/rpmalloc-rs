@@ -1,6 +1,6 @@
 [package]
 name = "rpmalloc"
-version = "0.2.0"
+version = "0.2.2"
 description = "Cross-platform global memory allocator using rpmalloc"
 authors = ["Embark <opensource@embark-studios.com>", "Johan Andersson <repi@repi.se>"]
 license = "MIT OR Apache-2.0"
@@ -20,7 +20,7 @@ doctest = false
 test = false
 
 [dependencies]
-rpmalloc-sys = { version = "0.2.0", path = "rpmalloc-sys", features = ["preload"] }
+rpmalloc-sys = { version = "0.2.2", path = "rpmalloc-sys", features = ["preload"] }
 
 [features]
 default = []
