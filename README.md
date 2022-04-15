@@ -1,4 +1,16 @@
-# 🐏 rpmalloc-rs
+<!-- Allow this file to not have a first line heading -->
+<!-- markdownlint-disable-file MD041 -->
+
+<!-- inline html -->
+<!-- markdownlint-disable-file MD033 -->
+
+<div align="center">
+
+<!--- FIXME: Pick an emoji and name your project! --->
+# `🐏 rpmalloc-rs`
+
+<!--- FIXME: Write short catchy description/tagline of project --->
+**Cross-platform Rust global memory allocator using [rpmalloc](https://github.com/rampantpixels/rpmalloc).**
 
 [![Embark](https://img.shields.io/badge/embark-open%20source-blueviolet.svg)](https://embark.dev)
 [![Embark](https://img.shields.io/badge/discord-ark-%237289da.svg?logo=discord)](https://discord.gg/dAuKfZS)
@@ -7,7 +19,9 @@
 [![dependency status](https://deps.rs/repo/github/EmbarkStudios/rpmalloc-rs/status.svg)](https://deps.rs/repo/github/EmbarkStudios/rpmalloc-rs)
 [![Build Status](https://github.com/EmbarkStudios/rpmalloc-rs/workflows/CI/badge.svg)](https://github.com/EmbarkStudios/rpmalloc-rs/actions?workflow=CI)
 
-Cross-platform Rust global memory allocator using [rpmalloc](https://github.com/rampantpixels/rpmalloc).
+</div>
+
+## Overview
 
 See the [rpmalloc README](https://github.com/mjansson/rpmalloc/blob/master/README.md) for a detailed description of how the allocator works, peforms, and compares with other allocators.
 
