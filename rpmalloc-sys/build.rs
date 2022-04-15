@@ -1,6 +1,3 @@
-extern crate cc;
-extern crate pkg_config;
-
 use std::env;
 use std::path::PathBuf;
 
@@ -54,5 +51,5 @@ fn main() {
         _ => (),
     }
 
-    build.compile("librpmalloc.a")
+    build.compile("librpmalloc.a");
 }

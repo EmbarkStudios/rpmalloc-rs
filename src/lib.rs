@@ -1,7 +1,3 @@
-#![warn(clippy::all)]
-#![warn(rust_2018_idioms)]
-#![deny(missing_docs)]
-
 //! # 🐏 rpmalloc
 //!
 //! [![Build Status](https://github.com/EmbarkStudios/rpmalloc-rs/workflows/CI/badge.svg)](https://github.com/EmbarkStudios/rpmalloc-rs/actions?workflow=CI)
@@ -143,13 +139,13 @@ pub struct RpMalloc;
 
 unsafe impl GlobalAlloc for RpMalloc {
     unsafe fn alloc(&self, layout: Layout) -> *mut u8 {
-        ffi::rpaligned_alloc(layout.align(), layout.size()) as *mut u8
+        ffi::rpaligned_alloc(layout.align(), layout.size()).cast::<u8>()
     }
     unsafe fn alloc_zeroed(&self, layout: Layout) -> *mut u8 {
-        ffi::rpaligned_calloc(layout.align(), 1, layout.size()) as *mut u8
+        ffi::rpaligned_calloc(layout.align(), 1, layout.size()).cast::<u8>()
     }
     unsafe fn dealloc(&self, ptr: *mut u8, _layout: Layout) {
-        ffi::rpfree(ptr as *mut ffi::c_void)
+        ffi::rpfree(ptr.cast::<ffi::c_void>());
     }
 }
 
