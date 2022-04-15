@@ -1,6 +1,6 @@
 [package]
 name = "rpmalloc-sys"
-version = "0.2.2+1.4.1"
+version = "0.2.2+b097fd0"
 description = "Unsafe FFI bindings to rpmalloc C library"
 authors = ["Embark <opensource@embark-studios.com>", "Johan Andersson <repi@repi.se>"]
 license = "MIT OR Apache-2.0"
