@@ -11,7 +11,9 @@ fn main() {
     }
 
     let mut build = cc::Build::new();
-    let mut build = build.file(path.join("rpmalloc.c")).opt_level(2);
+    let c_file = path.join("rpmalloc.c");
+    println!("cargo:rerun-if-changed={}", c_file.display());
+    let mut build = build.file(c_file).opt_level(2);
     // add defines for enabled features
 
     #[rustfmt::skip]
