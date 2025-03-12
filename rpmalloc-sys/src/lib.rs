@@ -42,19 +42,19 @@ pub use libc::{c_int, c_uint, c_void, size_t};
 #[repr(C)]
 #[derive(Clone, Copy, Default, Debug)]
 pub struct rpmalloc_global_statistics_t {
-    /// Current amount of virtual memory mapped, all of which might not have been committed (only if ENABLE_STATISTICS=1)
+    /// Current amount of virtual memory mapped, all of which might not have been committed (only if` ENABLE_STATISTICS=1`)
     pub mapped: size_t,
-    /// Peak amount of virtual memory mapped, all of which might not have been committed (only if ENABLE_STATISTICS=1)
+    /// Peak amount of virtual memory mapped, all of which might not have been committed (only if` ENABLE_STATISTICS=1`)
     pub mapped_peak: size_t,
     /// Current amount of memory in global caches for small and medium sizes (<32KiB)
     pub cached: size_t,
-    /// Current amount of memory allocated in huge allocations, i.e larger than LARGE_SIZE_LIMIT which is 2MiB by default (only if ENABLE_STATISTICS=1)
+    /// Current amount of memory allocated in huge allocations, i.e larger than `LARGE_SIZE_LIMIT `which is 2MiB by default (only if` ENABLE_STATISTICS=1`)
     pub huge_alloc: size_t,
-    /// Peak amount of memory allocated in huge allocations, i.e larger than LARGE_SIZE_LIMIT which is 2MiB by default (only if ENABLE_STATISTICS=1)
+    /// Peak amount of memory allocated in huge allocations, i.e larger than `LARGE_SIZE_LIMIT `which is 2MiB by default (only if` ENABLE_STATISTICS=1`)
     pub huge_alloc_peak: size_t,
-    /// Total amount of memory mapped since initialization (only if ENABLE_STATISTICS=1)
+    /// Total amount of memory mapped since initialization (only if` ENABLE_STATISTICS=1`)
     pub mapped_total: size_t,
-    /// Total amount of memory unmapped since initialization  (only if ENABLE_STATISTICS=1)
+    /// Total amount of memory unmapped since initialization  (only if` ENABLE_STATISTICS=1`)
     pub unmapped_total: size_t,
 }
 
@@ -112,13 +112,13 @@ pub struct rpmalloc_thread_statistics_t {
     pub sizecache: size_t,
     /// Current number of bytes available in thread span caches for small and medium sizes (<32KiB)
     pub spancache: size_t,
-    /// Total number of bytes transitioned from thread cache to global cache (only if ENABLE_STATISTICS=1)
+    /// Total number of bytes transitioned from thread cache to global cache (only if `ENABLE_STATISTICS=1`)
     pub thread_to_global: size_t,
-    /// Total number of bytes transitioned from global cache to thread cache (only if ENABLE_STATISTICS=1)
+    /// Total number of bytes transitioned from global cache to thread cache (only if `ENABLE_STATISTICS=1`)
     pub global_to_thread: size_t,
-    /// Per span count statistics (only if ENABLE_STATISTICS=1)
+    /// Per span count statistics (only if `ENABLE_STATISTICS=1`)
     pub span_use: [rpmalloc_thread_span_statistics_t; 32],
-    /// Per size class statistics (only if ENABLE_STATISTICS=1)
+    /// Per size class statistics (only if `ENABLE_STATISTICS=1`)
     pub size_use: [rpmalloc_thread_size_statistics_t; 128],
 }
 
@@ -206,7 +206,7 @@ extern "C" {
     pub fn rprealloc(ptr: *mut c_void, size: size_t) -> *mut c_void;
 
     /// Reallocate the given block to at least the given size and alignment,
-    /// with optional control flags (see RPMALLOC_NO_PRESERVE).
+    /// with optional control flags (see `RPMALLOC_NO_PRESERVE`).
     /// Alignment must be a power of two and a multiple of sizeof(void*),
     /// and should ideally be less than memory page size. A caveat of rpmalloc
     /// internals is that this must also be strictly less than the span size (default 64KiB)
