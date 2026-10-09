@@ -50,6 +50,9 @@ fn main() {
                 .flag("-Wno-documentation-unknown-command")
                 .flag("-Wno-static-in-inline");
         }
+        "windows" => {
+            println!("cargo:rustc-link-lib=advapi32");
+        }
         _ => (),
     }
 
