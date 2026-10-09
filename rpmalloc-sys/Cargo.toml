@@ -1,6 +1,6 @@
 [package]
 name = "rpmalloc-sys"
-version = "0.2.3+d5c329e"
+version = "0.3.0+2.0.1"
 description = "Unsafe FFI bindings to rpmalloc C library"
 authors = ["Embark <opensource@embark-studios.com>", "Johan Andersson <repi@repi.se>"]
 license = "MIT OR Apache-2.0"
@@ -21,14 +21,9 @@ cc = "1"
 
 [features]
 default = []
-preload = []                    # Compile with ENABLE_PRELOAD=1
 statistics = []                 # Compile with ENABLE_STATISTICS=1
 validate_args = []              # Compile with ENABLE_VALIDATE_ARGS=1
 asserts = []                    # Compile with ENABLE_ASSERTS=1
-guards = []                     # Compile with ENABLE_GUARDS=1
-unlimited_cache = []            # Compile with ENABLE_UNLIMITED_CACHE=1
-unlimited_global_cache = []     # Compile with ENABLE_UNLIMITED_GLOBAL_CACHE=1
-unlimited_thread_cache = []     # Compile with ENABLE_UNLIMITED_THREAD_CACHE=1
-global_cache = []               # Compile with ENABLE_GLOBAL_CACHE=1
-thread_cache = []               # Compile with ENABLE_THREAD_CACHE=1
-adaptive_thread_cache = []      # Compile with ENABLE_ADAPTIVE_THREAD_CACHE=1
+leak_detection = ["statistics"] # Compile with ENABLE_LEAK_DETECTION=1
+disable_unmap = []              # Compile with ENABLE_UNMAP=0
+disable_decommit = []           # Compile with ENABLE_DECOMMIT=0
